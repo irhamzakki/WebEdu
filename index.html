@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MOEIZ ACADEMY | Fun English Learning</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { 
+      font-family: 'Comic Neue', 'Comic Sans MS', cursive; 
+      background: linear-gradient(120deg,#a1c4fd,#c2e9fb); 
+      color:#333; line-height:1.6; 
+    }
+    h1,h2,h3 { color:#1a73e8; }
+    a { text-decoration:none; }
+
+    /* ===== Hero Section ===== */
+    #hero {
+      position: relative;
+      padding: 120px 20px;
+      background: linear-gradient(135deg, #89f7fe, #66a6ff);
+      border-radius: 0 0 50% 50% / 0 0 10% 10%;
+      text-align: center;
+      color: #fff;
+    }
+    .hero-title {
+      font-size: 3rem;
+      font-weight: bold;
+      animation: pop 1.5s ease-out;
+    }
+    .hero-subtitle {
+      font-size: 1.4rem;
+      margin-top: 10px;
+      color: #fff;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+      animation: fadeIn 2s ease-in;
+    }
+    @keyframes pop {
+      0% { transform: scale(0); opacity:0;}
+      60% { transform: scale(1.2); opacity:1;}
+      100% { transform: scale(1); opacity:1;}
+    }
+    @keyframes fadeIn {
+      0% { opacity:0; transform: translateY(20px);}
+      100% { opacity:1; transform: translateY(0);}
+    }
+
+    /* ===== Card ===== */
+    .card { 
+      background:linear-gradient(135deg,#fdfbfb,#ebedee); 
+      border-radius:20px; 
+      padding:20px; 
+      margin:15px; 
+      text-align:center; 
+      box-shadow:0 5px 15px rgba(0,0,0,0.1); 
+      transition:transform .3s, box-shadow .3s; 
+    }
+    .card:hover { 
+      transform:translateY(-8px); 
+      box-shadow:0 15px 30px rgba(0,0,0,0.2); 
+    }
+
+    /* ===== Footer ===== */
+    footer { 
+      background:linear-gradient(135deg,#66a6ff,#89f7fe); 
+      color:#fff; text-align:center; 
+      padding:40px 20px; 
+      border-radius:20px 20px 0 0; 
+    }
+    footer a { color:#fff; margin:0 10px; font-size:1.5rem; transition:transform .3s; }
+    footer a:hover { transform:scale(1.3) rotate(10deg); }
+
+    /* ===== Quiz ===== */
+    .quiz-card {
+      background: linear-gradient(135deg, #c2e9fb, #a1c4fd);
+      border-radius: 20px;
+      transition: transform .3s;
+      cursor: pointer;
+    }
+    .quiz-card:hover { transform: scale(1.05); }
+
+    .progress { background:#eee; border-radius:10px; overflow:hidden; height:20px;}
+    .progress-bar { 
+      height:20px; width:0%; 
+      background:linear-gradient(90deg, #55efc4, #00cec9); 
+      color:white; font-weight:bold; 
+      border-radius:10px; 
+      transition:width 0.4s; 
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <nav class="navbar navbar-expand-lg fixed-top bg-primary navbar-dark shadow">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">
+        🌍 MOEIZ ACADEMY
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#hero">🏠 Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#courses">📚 Courses</a></li>
+          <li class="nav-item"><a class="nav-link" href="#quiz">🧩 Quiz</a></li>
+          <li class="nav-item"><a class="nav-link" href="#mentors">👩‍🏫 Mentors</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- ===== Hero Section ===== -->
+<section id="hero">
+  <div class="container">
+    <h1 class="hero-title">Welcome to MOEIZ ACADEMY 🇬🇧</h1>
+    <p class="hero-subtitle">Belajar Bahasa Inggris jadi seru, santai, dan menyenangkan!</p>
+    <a href="#courses" class="btn btn-light mt-3">Mulai Belajar Sekarang</a>
+  </div>
+</section>
+
+<!-- ===== Courses Section ===== -->
+<section id="courses" class="py-5">
+  <div class="container text-center">
+    <h2 class="mb-4">Our English Courses</h2>
+    <p>Pilih topik Bahasa Inggris yang ingin kamu kuasai!</p>
+    <div class="row g-4">
+      <div class="row g-4">
+  <!-- Grammar Essentials -->
+  <div class="col-md-4">
+    <div class="card h-100 shadow-sm border-0">
+      <div class="card-body">
+        <h5 class="fw-bold text-primary">Grammar Essentials</h5>
+        <p class="text-muted">Pahami struktur kalimat dan aturan grammar dengan mudah.</p>
+      </div>
+      <div class="card-footer bg-transparent border-0 d-flex justify-content-around pb-3">
+        <a href="#quiz" class="btn btn-sm btn-success">
+          <i class="bi bi-play-circle"></i> Mulai Belajar
+        </a>
+        <a href="docs/grammar_guide.pdf" target="_blank" class="btn btn-sm btn-info text-white">
+          <i class="bi bi-eye"></i> Lihat Dokumen
+        </a>
+        <a href="docs/grammar_guide.pdf" download class="btn btn-sm btn-outline-secondary">
+          <i class="bi bi-download"></i> Download
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vocabulary Boost -->
+  <div class="col-md-4">
+    <div class="card h-100 shadow-sm border-0">
+      <div class="card-body">
+        <h5 class="fw-bold text-primary">Vocabulary Boost</h5>
+        <p class="text-muted">Tingkatkan kosakata sehari-hari agar makin lancar berbicara!</p>
+      </div>
+      <div class="card-footer bg-transparent border-0 d-flex justify-content-around pb-3">
+        <a href="#quiz" class="btn btn-sm btn-success">
+          <i class="bi bi-play-circle"></i> Mulai Belajar
+        </a>
+        <a href="docs/vocabulary_list.pdf" target="_blank" class="btn btn-sm btn-info text-white">
+          <i class="bi bi-eye"></i> Lihat Dokumen
+        </a>
+        <a href="docs/vocabulary_list.pdf" download class="btn btn-sm btn-outline-secondary">
+          <i class="bi bi-download"></i> Download
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Speaking Practice -->
+  <div class="col-md-4">
+    <div class="card h-100 shadow-sm border-0">
+      <div class="card-body">
+        <h5 class="fw-bold text-primary">Speaking Practice</h5>
+        <p class="text-muted">Latih pengucapan dan percakapan agar percaya diri berbahasa Inggris!</p>
+      </div>
+      <div class="card-footer bg-transparent border-0 d-flex justify-content-around pb-3">
+        <a href="#quiz" class="btn btn-sm btn-success">
+          <i class="bi bi-play-circle"></i> Mulai Belajar
+        </a>
+        <a href="docs/speaking_tips.pdf" target="_blank" class="btn btn-sm btn-info text-white">
+          <i class="bi bi-eye"></i> Lihat Dokumen
+        </a>
+        <a href="docs/speaking_tips.pdf" download class="btn btn-sm btn-outline-secondary">
+          <i class="bi bi-download"></i> Download
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Writing Book -->
+  <div class="col-md-4">
+    <div class="card h-100 shadow-sm border-0">
+      <div class="card-body">
+        <h5 class="fw-bold text-primary">Writing Book</h5>
+        <p class="text-muted">Kuasai cara menulis esai dan surat berbahasa Inggris dengan baik.</p>
+      </div>
+      <div class="card-footer bg-transparent border-0 d-flex justify-content-around pb-3">
+        <a href="#quiz" class="btn btn-sm btn-success">
+          <i class="bi bi-play-circle"></i> Mulai Belajar
+        </a>
+        <a href="docs/writing_book.pdf" target="_blank" class="btn btn-sm btn-info text-white">
+          <i class="bi bi-eye"></i> Lihat Dokumen
+        </a>
+        <a href="docs/writing_book.pdf" download class="btn btn-sm btn-outline-secondary">
+          <i class="bi bi-download"></i> Download
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reading -->
+  <div class="col-md-4">
+    <div class="card h-100 shadow-sm border-0">
+      <div class="card-body">
+        <h5 class="fw-bold text-primary">Reading Practice</h5>
+        <p class="text-muted">Tingkatkan kemampuan memahami teks Bahasa Inggris dengan latihan seru!</p>
+      </div>
+      <div class="card-footer bg-transparent border-0 d-flex justify-content-around pb-3">
+        <a href="#quiz" class="btn btn-sm btn-success">
+          <i class="bi bi-play-circle"></i> Mulai Belajar
+        </a>
+        <a href="docs/reading_material.pdf" target="_blank" class="btn btn-sm btn-info text-white">
+          <i class="bi bi-eye"></i> Lihat Dokumen
+        </a>
+        <a href="docs/reading_material.pdf" download class="btn btn-sm btn-outline-secondary">
+          <i class="bi bi-download"></i> Download
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== Quiz Section ===== -->
+<section id="quiz" class="py-5 text-center" style="background:linear-gradient(135deg,#a1c4fd,#c2e9fb);">
+  <div class="container">
+    <h2 class="fw-bold mb-4 text-dark">🎯 English Interactive Quiz</h2>
+    <p class="text-muted mb-5">Tes kemampuan Bahasa Inggrismu di berbagai kategori!</p>
+
+    <div class="row g-4 justify-content-center">
+      <!-- Grammar Quiz -->
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm p-4 quiz-card h-100">
+          <h5 class="fw-bold text-primary">Grammar Quiz</h5>
+          <p class="text-muted">Uji pemahamanmu tentang struktur kalimat.</p>
+          <a href="#" onclick="startQuiz('grammar')" class="btn btn-success btn-sm mt-2">
+            <i class="bi bi-play-circle"></i> Mulai Quiz
+          </a>
+        </div>
+      </div>
+
+      <!-- Vocabulary Quiz -->
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm p-4 quiz-card h-100">
+          <h5 class="fw-bold text-primary">Vocabulary Quiz</h5>
+          <p class="text-muted">Tantang dirimu dalam mengenali arti kata!</p>
+          <a href="#" onclick="startQuiz('vocabulary')" class="btn btn-success btn-sm mt-2">
+            <i class="bi bi-play-circle"></i> Mulai Quiz
+          </a>
+        </div>
+      </div>
+
+      <!-- Speaking Quiz -->
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm p-4 quiz-card h-100">
+          <h5 class="fw-bold text-primary">Speaking Quiz</h5>
+          <p class="text-muted">Pilih kalimat dengan pelafalan yang benar!</p>
+          <a href="#" onclick="startQuiz('speaking')" class="btn btn-success btn-sm mt-2">
+            <i class="bi bi-play-circle"></i> Mulai Quiz
+          </a>
+        </div>
+      </div>
+
+      <!-- Writing Quiz -->
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm p-4 quiz-card h-100">
+          <h5 class="fw-bold text-primary">Writing Quiz</h5>
+          <p class="text-muted">Lengkapi kalimat atau perbaiki grammar yang salah!</p>
+          <a href="#" onclick="startQuiz('writing')" class="btn btn-success btn-sm mt-2">
+            <i class="bi bi-play-circle"></i> Mulai Quiz
+          </a>
+        </div>
+      </div>
+
+      <!-- Reading Quiz -->
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm p-4 quiz-card h-100">
+          <h5 class="fw-bold text-primary">Reading Quiz</h5>
+          <p class="text-muted">Baca teks pendek dan jawab pertanyaan dengan benar!</p>
+          <a href="#" onclick="startQuiz('reading')" class="btn btn-success btn-sm mt-2">
+            <i class="bi bi-play-circle"></i> Mulai Quiz
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Area Soal -->
+    <div id="quiz-area" class="mt-5 d-none">
+      <h4 id="quiz-title" class="fw-bold mb-3"></h4>
+      <p id="question" class="fs-5"></p>
+      <div class="d-grid gap-2 col-6 mx-auto mt-3">
+        <button class="btn btn-light quiz-option"></button>
+        <button class="btn btn-light quiz-option"></button>
+        <button class="btn btn-light quiz-option"></button>
+        <button class="btn btn-light quiz-option"></button>
+      </div>
+      <div class="progress mt-4">
+        <div class="progress-bar" id="progress-bar">0%</div>
+      </div>
+      <button class="btn btn-primary mt-4" onclick="nextQuestion()">Soal Berikutnya ➡️</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Mentors Section ===== -->
+<section id="portfolio" class="py-5 bg-light text-center">
+  <div class="container">
+    <h2 class="fw-bold mb-3">👨‍💻 Portofolio Developer</h2>
+    <p class="text-muted mb-5">Kenali pembuat website MOEIZ ACADEMY dan beberapa proyek menarik yang telah dikembangkan.</p>
+
+    <div class="row g-4 justify-content-center align-items-center">
+      <div class="col-md-4">
+        <div class="card border-0 shadow-lg p-3 h-100">
+          <img src="img/irham-profile.jpg" class="card-img-top rounded-circle mx-auto mt-3" alt="Irham Ghoffar" style="width:150px; height:150px; object-fit:cover;">
+          <div class="card-body">
+            <h4 class="fw-bold mb-1">Muiz </h4>
+            <p class="text-primary mb-2">Web Developer & UI/UX Designer</p>
+            <p class="text-muted">Seorang pengembang web yang berfokus pada desain modern, interaktif, dan responsif menggunakan teknologi seperti HTML, CSS, PHP, dan Laravel.</p>
+            <div class="d-flex justify-content-center gap-3 mt-3">
+              <a href="https://github.com/" target="_blank" class="btn btn-dark btn-sm"><i class="bi bi-github"></i> GitHub</a>
+              <a href="https://www.linkedin.com/" target="_blank" class="btn btn-primary btn-sm"><i class="bi bi-linkedin"></i> LinkedIn</a>
+              <a href="mailto:irham@example.com" class="btn btn-success btn-sm"><i class="bi bi-envelope"></i> Email</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-7">
+        <div class="text-start">
+          <h5 class="fw-bold text-primary mb-3">✨ Tentang Saya</h5>
+          <p>Saya adalah seorang pengembang web yang bersemangat dalam menciptakan pengalaman digital yang intuitif dan menarik. Website ini merupakan hasil eksplorasi saya dalam menggabungkan desain interaktif dengan konsep pembelajaran daring yang menyenangkan.</p>
+
+          <h5 class="fw-bold text-primary mt-4 mb-3">🚀 Proyek yang Pernah Dikembangkan</h5>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">📚 <strong>MOEIZ ACADEMY</strong> – Platform pembelajaran Bahasa Inggris interaktif.</li>
+            <li class="list-group-item">🏠 <strong>Sistem Pendataan Penduduk Desa Sambi</strong> – Aplikasi berbasis CodeIgniter dan Bootstrap.</li>
+            <li class="list-group-item">📖 <strong>Perpustakaan Masjid Attaqwa</strong> – Website manajemen buku berbasis Laravel Blade.</li>
+            <li class="list-group-item">💡 <strong>Analisis Clustering K-Means</strong> – Penelitian untuk identifikasi pola gangguan mental siswa.</li>
+          </ul>
+
+          <div class="mt-4">
+            <a href="#contact" class="btn btn-outline-primary">Hubungi Saya</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== Footer ===== -->
+<footer>
+  <p>&copy; 2025 MOEIZ ACADEMY | Learn English with Fun & Confidence!</p>
+</footer>
+
+<script>
+const quizzes = {
+  grammar: {
+    title: "Grammar Quiz",
+    questions: [
+      { q: "She ___ to school every day.", options: ["go", "goes", "gone", "going"], a: "goes" },
+      { q: "They ___ playing football now.", options: ["is", "are", "was", "be"], a: "are" },
+      { q: "I ___ a new laptop yesterday.", options: ["buy", "buys", "bought", "buyed"], a: "bought" }
+    ]
+  },
+  vocabulary: {
+    title: "Vocabulary Quiz",
+    questions: [
+      { q: "What is the opposite of 'Happy'?", options: ["Sad", "Glad", "Excited", "Joyful"], a: "Sad" },
+      { q: "The synonym of 'Big' is ...", options: ["Tiny", "Large", "Thin", "Small"], a: "Large" },
+      { q: "The plural form of 'Child' is ...", options: ["Childs", "Children", "Childes", "Childen"], a: "Children" }
+    ]
+  },
+  speaking: {
+    title: "Speaking Quiz",
+    questions: [
+      { q: "Choose the correct sentence:", options: ["He go to school.", "He goes to school.", "He going school.", "He gone to school."], a: "He goes to school." },
+      { q: "Select the correct phrase:", options: ["I am fine, thank you.", "I am fine, thanks you.", "I am fine thank yous.", "I am fine you thank."], a: "I am fine, thank you." }
+    ]
+  },
+  writing: {
+    title: "Writing Quiz",
+    questions: [
+      { q: "Select the correct sentence:", options: ["She don't like tea.", "She doesn’t like tea.", "She doesn’t likes tea.", "She not like tea."], a: "She doesn’t like tea." },
+      { q: "Which is correct?", options: ["I has a book.", "I am have a book.", "I have a book.", "I have book."], a: "I have a book." }
+    ]
+  },
+  reading: {
+    title: "Reading Quiz",
+    questions: [
+      { q: "‘John likes apples. He eats them every day.’ — What does John like?", options: ["Oranges", "Apples", "Bananas", "Mangoes"], a: "Apples" },
+      { q: "‘Mary is a teacher. She works at school.’ — Where does Mary work?", options: ["Hospital", "School", "Bank", "Office"], a: "School" }
+    ]
+  }
+};
+
+let currentQuiz = null;
+let current = 0;
+let score = 0;
+
+const questionEl = document.getElementById("question");
+const progressBar = document.getElementById("progress-bar");
+const quizArea = document.getElementById("quiz-area");
+const quizTitle = document.getElementById("quiz-title");
+const options = document.querySelectorAll(".quiz-option");
+
+function startQuiz(id) {
+  currentQuiz = quizzes[id];
+  current = 0;
+  score = 0;
+  quizArea.classList.remove("d-none");
+  quizTitle.innerText = currentQuiz.title;
+  loadQuestion();
+
+  // 🔽 Smooth scroll ke area quiz
+  setTimeout(() => {
+    quizArea.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, 200);
+}
+
+function loadQuestion() {
+  const q = currentQuiz.questions[current];
+  questionEl.innerText = q.q;
+  options.forEach((btn, i) => {
+    btn.innerText = q.options[i];
+    btn.style.background = "#fff";
+    btn.style.color = "#333";
+    btn.style.pointerEvents = "auto";
+    btn.onclick = () => checkAnswer(btn, q.a);
+  });
+  progressBar.style.width = ((current / currentQuiz.questions.length) * 100) + "%";
+  progressBar.innerText = Math.floor((current / currentQuiz.questions.length) * 100) + "%";
+}
+
+function checkAnswer(el, correct) {
+  if (el.innerText === correct) {
+    score++;
+    el.style.background = "#55efc4";
+    el.style.color = "#fff";
+  } else {
+    el.style.background = "#ff7675";
+    el.style.color = "#fff";
+  }
+  options.forEach(o => o.style.pointerEvents = "none");
+}
+
+function nextQuestion() {
+  current++;
+  if (current >= currentQuiz.questions.length) {
+    alert(`🎉 Quiz Selesai!\nSkor kamu: ${score}/${currentQuiz.questions.length}`);
+    progressBar.style.width = "100%";
+    progressBar.innerText = "100%";
+    quizArea.classList.add("d-none");
+    return;
+  }
+  loadQuestion();
+}
+</script>
+</body>
+</html>

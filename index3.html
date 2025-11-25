@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Sistem Evaluasi Pembelajaran - Penilaian Kognitif</title>
+    <meta content="Sistem Evaluasi Pembelajaran Interaktif untuk materi Penilaian Kognitif." name="description" />
+    <meta content="penilaian kognitif, evaluasi pembelajaran, taksonomi bloom, uji kompetensi, modul interaktif" name="keywords" />
+
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="favicon/apple-touch-icon-57x57.png" />
+    <meta name="application-name" content="&nbsp;" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <link rel="icon" type="image/png" href="favicon/favicon-196x196.png" sizes="196x196" />
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet" />
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+    <link href="assets/vendor/venobox/venobox.css" rel="stylesheet" />
+    <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <link href="assets/css/style-ku.css" rel="stylesheet" />
+    
+        <style>
+        /* ========================================================== */
+        /* 🎨 Custom CSS untuk Tampilan Friendly & Interaktif */
+        /* ========================================================== */
+
+        :root {
+            /* >>> TEMA TERANG (LIGHT THEME) - Standar Anda <<< */
+            --color-primary: #0A3D62; /* Biru Tua (Deep Navy) - Utama */
+            --color-secondary: #4A90E2; /* Soft Blue/Sky Blue untuk Aksen */
+            --color-text-dark: #333333; /* Teks Utama */ 
+            --color-bg-light: #F8F8F8; /* Latar Belakang */ 
+            --color-card-light: #FFFFFF; /* Warna Card/Modal */ 
+            --color-error: #D32F2F; /* Merah */
+            --color-success: #388E3C; /* Hijau */
+            --color-info: #00A693; /* Warna baru untuk game */
+            --color-shadow: rgba(10, 61, 98, 0.1); /* Bayangan Lembut */ 
+        }
+
+        .dark-theme {
+            /* >>> PERUBAHAN TEMA GELAP YANG LEBIH NYAMAN (Optimized Dark Mode) <<< */
+            
+            /* 1. Warna Utama (Primary Color) - Harus terang di latar gelap */
+            --color-primary: #BB86FC; /* Violet/Purple Soft (Sesuai MD Standard) */
+            
+            /* 2. Warna Aksen (Secondary Color) - Warna kontras yang cerah */
+            --color-secondary: #03DAC6; /* Teal/Cyan Soothing */
+
+            /* 3. Warna Latar Belakang dan Kedalaman */
+            --color-bg-light: #121212; /* Latar Belakang Sangat Gelap (Hampir Hitam) */
+            --color-card-light: #1E1E1E; /* Warna Card/Modal, memberi kedalaman (Elevated Surface) */
+            --color-surface-hover: #292929; /* Untuk efek hover di card */
+            
+            /* 4. Warna Teks */
+            --color-text-dark: #EDEDED; /* Teks Utama (Off-White, Opasitas 87%) */
+            --color-text-secondary: #A0A0A0; /* Teks Sekunder (Opasitas 60%) */
+            
+            /* 5. Warna Status */
+            --color-error: #CF6679; /* Merah Muda Soft untuk Error */
+            --color-success: #50C878; /* Hijau Soft untuk Sukses */
+            --color-info: #4DD0E1; /* Warna baru untuk game */
+            
+            /* 6. Bayangan */
+            --color-shadow: rgba(255, 255, 255, 0.15); /* Bayangan putih opasitas rendah */ 
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--color-bg-light);
+            /* Penting: Linear gradient terang dihapus untuk dark mode yang konsisten gelap */
+            /* Untuk light mode, CSS di bawah akan menimpa. */
+            background: linear-gradient(135deg, var(--color-bg-light) 0%, #EEEEEE 50%, var(--color-bg-light) 100%);
+            background-attachment: fixed;
+            color: var(--color-text-dark);
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        /* Memastikan body di dark-theme hanya menggunakan warna solid */
+        .dark-theme body {
+            background: var(--color-bg-light);
+            background-attachment: fixed;
+        }
+
+
+        /* Navigasi */
+        #header { transition: all ease-in-out 0.3s; background: var(--color-primary); z-index: 100; } /* FIX: Tambahkan z-index */
+        /* Di Dark Mode, header akan menggunakan BB86FC */
+        .nav-menu a { color: var(--color-text-dark); background: rgba(255, 255, 255, 0.1); } 
+        .nav-menu a:hover, .nav-menu .active a { color: var(--color-primary); background: #fff; }
+        
+        /* Di Dark Mode, warna hover menu harus dibalik */
+        .dark-theme .nav-menu a:hover, .dark-theme .nav-menu .active a { 
+            color: var(--color-primary); /* BB86FC */ 
+            background: var(--color-surface-hover); /* #292929 */
+        }
+        .dark-theme .nav-menu a { color: var(--color-text-dark); background: transparent; }
+
+        .mobile-nav-toggle { background: var(--color-secondary); }
+
+        /* === PERUBAHAN FONT HERO === */
+        #hero h1 { 
+            font-size: 64px; 
+            font-weight: 700; 
+            line-height: 56px; 
+            color: var(--color-secondary); /* Aksen di Light Mode */
+        }
+        #hero p { 
+            color: var(--color-text-dark); 
+            font-size: 26px; 
+        }
+        #hero p span { 
+            color: var(--color-secondary); 
+            border-bottom: 3px solid var(--color-primary); 
+        }
+        .dark-theme #hero h1, .dark-theme #hero p span {
+            /* Menggunakan Aksen (Teal) agar kontras dan nyaman di dark mode */
+            color: var(--color-secondary); 
+        }
+        .dark-theme #hero p { 
+            color: var(--color-text-dark); /* Teks utama tetap off-white */
+        }
+        .dark-theme #hero p span {
+            border-bottom: 3px solid var(--color-primary); /* Garis bawah tetap Violet */
+        }
+        /* === AKHIR PERUBAHAN WARNA FONT HERO === */
+
+        /* Modul Bar Styling */
+        .content-container { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
+
+        .modul-bar {
+            background-color: var(--color-card-light);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px var(--color-shadow);
+            border-left: 5px solid var(--color-secondary); 
+            transition: transform 0.2s, background-color 0.3s;
+            
+            align-items: center;
+            gap: 20px;
+        }
+
+        .dark-theme .modul-bar:hover { 
+            transform: translateY(-3px); 
+            background-color: var(--color-surface-hover); /* Menambah efek hover yang baik */
+            box-shadow: 0 8px 20px var(--color-shadow); 
+        }
+        
+        .modul-bar h2 {
+            color: var(--color-primary); /* Deep Navy di Light Mode */
+            margin: 0 0 10px 0;
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+
+        .dark-theme .modul-bar h2 {
+            color: var(--color-primary); /* Violet/Purple di Dark Mode */
+        }
+
+        /* Tombol & Modal (Disesuaikan agar konsisten) */
+        .btn-video { background-color: #F98866; color: white; } /* Jingga */
+        .btn-materi { background-color: #58CCED; color: var(--color-primary); } /* Cyan terang */
+        .btn-latihan { background-color: #FFC94A; color: var(--color-primary); } /* Kuning */ 
+        .btn-game { background-color: var(--color-info); color: white; } /* Warna Game Baru */
+        .btn-primary { background-color: var(--color-primary); color: white; } /* Deep Navy/Violet */
+
+        /* Warna Tombol di Dark Mode */
+        .dark-theme .btn-primary { background-color: var(--color-primary); color: var(--color-text-dark); }
+        .dark-theme .btn-video { background-color: #FF9E6F; color: var(--color-text-dark); } 
+        .dark-theme .btn-materi { background-color: #79D1FF; color: #121212; } 
+        .dark-theme .btn-latihan { background-color: #FFE680; color: #121212; } 
+        .dark-theme .btn-game { background-color: var(--color-info); color: #121212; } 
+        
+        /* Quiz Progress Bar Styling */
+        #quiz-modal .progress-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+        }
+        .dark-theme #quiz-modal .progress-container {
+            background-color: #3e3e3e; 
+        }
+
+        #quiz-progress {
+            height: 25px;
+            width: 0%;
+            background-color: var(--color-success);
+            text-align: center;
+            line-height: 25px;
+            color: white;
+            transition: width 0.4s ease;
+        }
+
+        #quiz-progress-text {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            top: 50%;
+            transform: translateY(-50%);
+            font-weight: bold;
+            color: #333;
+        }
+        .dark-theme #quiz-progress-text {
+            color: var(--color-text-dark); /* Menggunakan off-white */
+        }
+
+        /* Modal, Quiz, Notifikasi (Disesuaikan agar konsisten) */
+        /* FIX: Tambahkan styling modal agar muncul di lapisan paling depan */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000; /* PENTING: Nilai yang sangat tinggi untuk memastikan di atas #header */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+            padding-top: 50px; /* Jaga agar konten tidak terpotong */
+        }
+        
+        .modal-content { color: var(--color-text-dark); background-color: var(--color-card-light); margin: auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 600px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .floating-btn { background-color: var(--color-secondary); z-index: 10000; }
+        
+        .dark-theme .floating-btn {
+            background-color: var(--color-primary); /* Violet */
+            color: var(--color-text-dark);
+        }
+        
+        /* Quiz Options */
+        #question-area label, #game-options button {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            text-align: left;
+            width: 100%;
+        }
+        #question-area label:hover, #game-options button:not([disabled]):hover {
+            background-color: #f0f0f0;
+        }
+        .dark-theme #question-area label, .dark-theme #game-options button {
+            border-color: #444; /* Border sedikit lebih terang */
+            color: var(--color-text-dark);
+            background-color: transparent;
+        }
+        .dark-theme #question-area label:hover, .dark-theme #game-options button:not([disabled]):hover {
+            background-color: var(--color-surface-hover); /* Hover lebih lembut */
+        }
+        
+        /* Game Specific Styles */
+        #game-options button {
+            font-weight: 600;
+        }
+        .game-correct { background-color: var(--color-success) !important; color: white !important; border-color: var(--color-success) !important; }
+        .game-incorrect { background-color: var(--color-error) !important; color: white !important; border-color: var(--color-error) !important; }
+        .dark-theme .game-correct { color: #121212 !important; }
+        .dark-theme .game-incorrect { color: #121212 !important; }
+</style>
+</head>
+
+<body class="light-theme">
+
+    <div id="notification-area" class="notification"></div>
+    
+    <button type="button" class="mobile-nav-toggle d-xl-none">
+        <i class="icofont-navigation-menu"></i>
+    </button>
+
+    <header id="header" class="d-flex flex-column justify-content-center">
+        <div class="d-flex justify-content-end align-items-center p-3">
+             <button id="theme-toggle" class="interactive-btn" aria-label="Toggle light and dark mode" style="background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; transition: color 0.2s;">
+                <i class="fas fa-sun"></i>
+            </button>
+        </div>
+        
+        <nav class="nav-menu">
+            <ul> 
+                <li class="active">
+                    <a href="#hero"><i class="bx bx-home"></i> <span>Beranda</span></a>
+                </li>
+                <li>
+                    <a href="#about"><i class="bx bx-book-open"></i> <span>Modul Pembelajaran</span></a>
+                </li>
+                <li>
+                    <a href="#modul-5"><i class="bx bx-check-shield"></i> <span>Uji Kompetensi</span></a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" id="open-ai-chat-nav" class="interactive-btn"><i class="bx bx-envelope"></i> <span>Tanya Asisten AI</span></a>
+                </li>
+            </ul>
+        </nav>
+        </header>
+    <section id="hero" class="d-flex flex-column justify-content-center">
+        <div class="container hero-container" data-aos="zoom-in" data-aos-delay="100">
+            <h1>Sistem Evaluasi Pembelajaran</h1>
+            <p>
+                Pelajari Lebih Dalam Tentang <br />
+                <span
+                    class="typed"
+                    data-typed-items="Penilaian Kognitif|Taksonomi Bloom|Pengukuran HOTS"
+                ></span>
+            </p>
+            <p style="font-size: 1.1em; margin-top: 10px;">
+                <i class="fas fa-arrow-left"></i> Mulai dengan memilih modul di menu kiri!
+            </p>
+            <div class="social-links">
+                <a href="(isi dengan link anda)" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="(isi dengan link anda)" class="github"><i class="bx bxl-github"></i></a>
+                <a href="(isi dengan link anda)" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </section>
+    <main id="main">
+        <section id="about" class="about">
+            <div class="container content-container" data-aos="fade-up">
+                <div class="section-title">
+                    <h2 class="text-center" style="color: var(--color-primary); margin-bottom: 30px; padding-bottom: 10px; border-bottom: 2px solid var(--color-secondary);">
+                        MODUL PEMBELAJARAN PENILAIAN KOGNITIF 🧠
+                    </h2>
+                    <p class="text-center">Selamat datang! Pilih modul di bawah ini untuk memulai pembelajaran. Selesaikan semua modul sebelum mengikuti Uji Kompetensi.</p>
+                </div>
+                
+                <div class="row">
+                    <div class="col-lg-12 pt-4 pt-lg-0 content">
+                        
+                        <section class="modul-bar" id="modul-1">
+                            <div class="modul-icon"><i class="fas fa-book-reader"></i></div>
+                            <div class="modul-content">
+                                <h2>1. Evaluasi Hasil Belajar Kognitif</h2>
+                                <p>Pahami konsep dasar, pentingnya, dan manfaat penilaian kognitif dalam proses belajar mengajar.</p>
+                                <div class="button-group">
+                                    <a href="https://youtu.be/MA6h4WouotI?si=sumawwoqMxVBKIaq" target="_blank" class="btn btn-video interactive-btn">
+                                        <i class="fas fa-video"></i> Tonton Video
+                                    </a>
+                                    <a href="Instrumen Kognitif.pdf" target="_blank" class="btn btn-materi interactive-btn">
+                                        <i class="fas fa-book"></i> Baca Materi Teks
+                                    </a> <button class="btn btn-latihan interactive-btn" data-modul="1"><i class="fas fa-pencil-alt"></i> Latihan Singkat</button>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="modul-bar" id="modul-2">
+                            <div class="modul-icon"><i class="fas fa-pencil-ruler"></i></div>
+                            <div class="modul-content">
+                                <h2>2. Langkah-Langkah penyusunan evaluasi kognitif</h2>
+                                <p>Pelajari langkah-langkah praktis dalam merancang soal dan instrumen yang valid dan reliabel.</p>
+                                <div class="button-group">
+                                    <a href="https://youtu.be/v9OjPm1AKqc?si=FbFYWZho6CdeWhVH" target="_blank" class="btn btn-video interactive-btn">
+                                        <i class="fas fa-video"></i> Tonton Video
+                                    </a>
+                                    <a href="Langkah penyusunan.pdf" target="_blank" class="btn btn-materi interactive-btn">
+                                        <i class="fas fa-book"></i> Baca Materi Teks
+                                    </a> <button class="btn btn-latihan interactive-btn" data-modul="2"><i class="fas fa-pencil-alt"></i> Latihan Singkat</button>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="modul-bar" id="modul-3">
+                            <div class="modul-icon"><i class="fas fa-graduation-cap"></i></div>
+                            <div class="modul-content">
+                                <h2>3. Instrumen Evaluasi Hasil Belajar Kognitif</h2>
+                                <p>Menguasai 6 tingkatan berpikir (C1-C6) untuk mengukur kemampuan mulai dari Mengingat hingga Mencipta.</p>
+                                <div class="button-group">
+                                    <a href="https://youtu.be/vb4s-i9dhhk" target="_blank" class="btn btn-video interactive-btn">
+                                        <i class="fas fa-video"></i> Tonton Video
+                                    </a>
+                                    <a href="Instrumen Kognitif.pdf" target="_blank" class="btn btn-materi interactive-btn">
+                                        <i class="fas fa-book"></i> Baca Materi Teks
+                                    </a>
+                                    <button class="btn btn-latihan interactive-btn" data-modul="3"><i class="fas fa-pencil-alt"></i> Latihan Soal</button>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="modul-bar" id="modul-4">
+                            <div class="modul-icon"><i class="fas fa-rocket"></i></div>
+                            <div class="modul-content">
+                                <h2>4. Macam-Macam Teknik Evaluasi Hasil Belajar</h2>
+                                <p>Fokus pada penyusunan soal yang menguji kemampuan Menganalisis (C4), Mengevaluasi (C5), dan Mencipta (C6).</p>
+                                <div class="button-group">
+                                    <a href="https://youtu.be/dTf7ADnQ3bQ?si=yEhuVlDslWo0RVHl" target="_blank" class="btn btn-video interactive-btn">
+                                        <i class="fas fa-video"></i> Tonton Video
+                                    </a>
+                                    <a href="Macam Teknik Evaluasi.pdf" target="_blank" class="btn btn-materi interactive-btn">
+                                        <i class="fas fa-book"></i> Baca Materi Teks
+                                    </a> <button class="btn btn-latihan interactive-btn" data-modul="4"><i class="fas fa-pencil-alt"></i> Tes Pemahaman HOTS</button>
+                                </div>
+                            </div>
+                        </section>
+                        
+                        <section class="modul-bar" id="modul-6" style="border-left: 5px solid var(--color-info);">
+                            <div class="modul-icon" style="color: var(--color-info);"><i class="fas fa-gamepad"></i></div>
+                            <div class="modul-content">
+                                <h2>5. Game Interaktif: Klasifikasi Bloom (C1-C6)</h2>
+                                <p>Uji kecepatan dan ketepatan Anda dalam mengklasifikasikan Kata Kerja Operasional ke dalam Taksonomi Bloom yang benar.</p>
+                                <div class="button-group">
+                                    <button class="btn btn-game interactive-btn" id="start-game-btn"><i class="fas fa-play"></i> **Mulai Game**</button>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="modul-bar" id="modul-5" style="border-left: 5px solid var(--color-success);">
+                            <div class="modul-icon" style="color: var(--color-success);"><i class="fas fa-award"></i></div>
+                            <div class="modul-content">
+                                <h2>6. UJI KOMPETENSI AKHIR (20 SOAL)</h2>
+                                <p>Saatnya menguji semua pemahaman Anda. Dapatkan skor minimal 70 untuk dianggap Kompeten!</p>
+                                <div class="button-group modul-5-controls">
+                                    <button class="btn btn-primary interactive-btn" data-modul="5" id="start-quiz-btn"><i class="fas fa-clipboard-list"></i> **Mulai Ujian Sekarang**</button>
+                                </div>
+                            </div>
+                        </section>
+
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+        </main>
+    <button id="ai-toggle-btn" class="floating-btn interactive-btn" aria-label="Tanya Asisten AI">
+        <i class="fas fa-robot"></i>
+    </button>
+    
+    <div id="ai-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn interactive-btn">&times;</span>
+            <h3>🤖 Asisten Pembelajaran AI</h3>
+            <div class="ai-input-group">
+                <input type="text" id="ai-question" placeholder="Ketik pertanyaan Anda tentang Penilaian Kognitif...">
+                <button id="ai-send-btn" class="btn btn-primary interactive-btn"><i class="fas fa-paper-plane"></i> Kirim</button>
+            </div>
+            <div id="ai-response" class="ai-response-area">
+                <p>Jawaban AI akan ditampilkan di sini.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="quiz-modal" class="modal">
+        <div class="modal-content quiz-content">
+            <span class="close-btn interactive-btn" id="close-quiz-btn">&times;</span>
+            <h3 id="quiz-title">Ujian Kompetensi Penilaian Kognitif</h3>
+            <div class="progress-container" style="position: relative;">
+                <div class="progress-bar" id="quiz-progress"></div>
+                <div class="progress-text" id="quiz-progress-text">Soal 0 dari 20</div>
+            </div>
+            <div id="question-area">
+                </div>
+            <div id="quiz-controls">
+                <button class="btn btn-primary interactive-btn" id="next-question-btn" disabled>Soal Selanjutnya</button>
+                <button class="btn btn-latihan interactive-btn" id="submit-quiz-btn" style="display: none;">Selesai & Cek Skor</button>
+            </div>
+            <div id="quiz-result" class="ai-response-area" style="display: none;">
+                </div>
+        </div>
+    </div>
+    
+    <div id="game-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn interactive-btn" id="close-game-btn">&times;</span>
+            <h3 id="game-title">🕹️ Klasifikasi Bloom (C1-C6)</h3>
+            <div id="game-info" class="ai-response-area" style="margin-bottom: 15px;">
+                <p>Cocokkan Kata Kerja Operasional (KKO) dengan Tingkat Kognitif Taksonomi Bloom yang benar. 5 Soal, Waktu: 30 Detik!</p>
+            </div>
+            
+            <div id="game-content">
+                <p id="game-timer" style="font-weight: bold; color: var(--color-error); font-size: 1.2em; text-align: center;">Waktu: 30</p>
+                <h4 id="game-question-text" style="color: var(--color-primary); text-align: center; margin-bottom: 20px;">KKO: **Menganalisis**</h4>
+                <div id="game-options">
+                    </div>
+                <div id="game-result-area" class="ai-response-area" style="display: none; margin-top: 20px;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+    <script src="assets/vendor/counterup/counterup.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/venobox/venobox.min.js"></script>
+    <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="assets/vendor/typed.js/typed.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+
+    <script src="assets/js/main.js"></script>
+
+    <audio id="click-sound" src="click.mp3.mp3" preload="auto"></audio>
+
+    <script>
+        // ==========================================================
+        // >>> BANK SOAL LATIHAN & UJIAN AKHIR <<<
+        // ==========================================================
+        
+        // Modul 1: Pengertian & Tujuan (Latihan Singkat, 5 Soal)
+        const modul1Questions = [
+            { text: "Apa tujuan utama dari **penilaian kognitif**?", options: ["Mengukur sikap siswa", "Mengukur keterampilan motorik", "Mengukur kemampuan intelektual (pengetahuan)", "Mengukur motivasi belajar"], answer: "Mengukur kemampuan intelektual (pengetahuan)" },
+            { text: "Penilaian kognitif fokus pada ranah...", options: ["Afektif", "Psikomotorik", "Pengetahuan", "Sikap"], answer: "Pengetahuan" },
+            { text: "Manakah yang merupakan manfaat dari penilaian kognitif bagi guru?", options: ["Menentukan ekstrakurikuler siswa", "Dasar untuk perbaikan proses pembelajaran", "Memberikan nilai tanpa umpan balik", "Mengukur kecepatan lari siswa"], answer: "Dasar untuk perbaikan proses pembelajaran" },
+            { text: "Istilah yang paling tepat untuk mengukur hasil belajar ranah kognitif adalah...", options: ["Observasi", "Tes", "Wawancara", "Jurnal"], answer: "Tes" },
+            { text: "Penilaian yang dilakukan di akhir semester untuk menentukan kelulusan mata pelajaran disebut penilaian...", options: ["Diagnostik", "Formatif", "Sumatif", "Portofolio"], answer: "Sumatif" }
+        ];
+
+        // Modul 2: Penyusunan Instrumen (Latihan Singkat, 5 Soal)
+        const modul2Questions = [
+            { text: "Langkah pertama dan terpenting dalam menyusun tes kognitif yang baik adalah...", options: ["Membuat kunci jawaban", "Menyusun kisi-kisi soal", "Menentukan skor akhir", "Mencetak soal"], answer: "Menyusun kisi-kisi soal" },
+            { text: "Sebuah soal dikatakan **valid** jika...", options: ["Mudah dikerjakan", "Cepat diperiksa", "Mengukur apa yang seharusnya diukur", "Menggunakan bahasa yang sulit"], answer: "Mengukur apa yang seharusnya diukur" },
+            { text: "Jika hasil tes yang sama diperoleh secara konsisten pada pengukuran berulang, tes tersebut memiliki sifat...", options: ["Objektivitas", "Validitas", "Realiabilitas", "Kepraktisan"], answer: "Realiabilitas" },
+            { text: "Untuk memastikan **validitas isi (content validity)**, instrumen harus mencakup...", options: ["Pendapat ahli", "Seluruh materi yang diajarkan", "Tingkat kesulitan tinggi", "Hanya soal pilihan ganda"], answer: "Seluruh materi yang diajarkan" },
+            { text: "Manakah yang termasuk instrumen tes tertulis?", options: ["Portofolio", "Pilihan Ganda", "Wawancara", "Observasi"], answer: "Pilihan Ganda" }
+        ];
+        
+        // Modul 3: Instrumen Evaluasi/Taksonomi Bloom (Latihan Soal, 5 Soal)
+        const modul3Questions = [
+            { text: "Tingkatan Taksonomi Bloom (Revisi) yang paling dasar adalah...", options: ["Menerapkan (C3)", "Memahami (C2)", "Mengingat (C1)", "Menganalisis (C4)"], answer: "Mengingat (C1)" },
+            { text: "Kata kerja operasional (KKO) 'Menjelaskan', 'Meringkas', dan 'Membandingkan' berada pada tingkatan...", options: ["C1 (Mengingat)", "C2 (Memahami)", "C3 (Menerapkan)", "C4 (Menganalisis)"], answer: "C2 (Memahami)" },
+            { text: "Soal yang meminta siswa untuk **menggunakan rumus matematika** dalam skenario baru mengukur kemampuan...", options: ["Mengingat (C1)", "Memahami (C2)", "Menerapkan (C3)", "Menganalisis (C4)"], answer: "Menerapkan (C3)" },
+            { text: "Taksonomi Bloom diciptakan untuk mengklasifikasikan...", options: ["Tujuan pengajaran", "Tipe kepribadian", "Gaya belajar", "Jenis penilaian non-tes"], answer: "Tujuan pengajaran" },
+            { text: "Untuk mengukur kemampuan siswa dalam **memisahkan informasi menjadi bagian-bagian dan menentukan hubungan antarbagian**, digunakan tingkatan...", options: ["Menerapkan (C3)", "Menganalisis (C4)", "Mengevaluasi (C5)", "Mencipta (C6)"], answer: "Menganalisis (C4)" }
+        ];
+
+        // Modul 4: HOTS (Tes Pemahaman HOTS, 5 Soal)
+        const modul4Questions = [
+            { text: "**HOTS (High Order Thinking Skills)** dimulai dari tingkatan Taksonomi Bloom yang mana?", options: ["C1 (Mengingat)", "C2 (Memahami)", "C3 (Menerapkan)", "C4 (Menganalisis)"], answer: "C4 (Menganalisis)" },
+            { text: "Kemampuan **Mencipta (C6)** berfokus pada aktivitas...", options: ["Membuat kesimpulan", "Membuat rekomendasi", "Menyusun produk/ide baru", "Mengevaluasi kualitas"], answer: "Menyusun produk/ide baru" },
+            { text: "Tahapan penyusunan soal HOTS yang melibatkan penentuan tingkat berpikir yang diukur adalah...", options: ["Penulisan kisi-kisi", "Penentuan KD/Materi", "Penulisan butir soal", "Penentuan skor"], answer: "Penulisan kisi-kisi" },
+            { text: "Soal yang meminta siswa untuk **menilai (judge)** keefektifan dua solusi berbeda mengukur tingkatan...", options: ["Menganalisis (C4)", "Mengevaluasi (C5)", "Mencipta (C6)", "Menerapkan (C3)"], answer: "Mengevaluasi (C5)" },
+            { text: "Salah satu ciri utama soal HOTS adalah...", options: ["Hanya menguji ingatan", "Memiliki satu jawaban tunggal yang jelas", "Memerlukan penalaran untuk menjawab", "Soal yang sangat panjang"], answer: "Memerlukan penalaran untuk menjawab" }
+        ];
+
+        // Modul 5: Uji Kompetensi Akhir (Bank soal unik, 10 soal untuk diulang menjadi 20)
+        const finalExamQuestionsBank = [
+            { text: "Tujuan utama dari **penilaian kognitif** adalah untuk mengukur aspek...", options: ["Afektif (Sikap)", "Psikomotorik (Keterampilan)", "Intelektual (Pengetahuan)", "Sosial Emosional"], answer: "Intelektual (Pengetahuan)" },
+            { text: "Manakah yang *bukan* merupakan manfaat utama dari penilaian kognitif?", options: ["Mengetahui capaian belajar", "Dasar perbaikan pembelajaran", "Menentukan bakat non-akademik", "Memberikan umpan balik"], answer: "Menentukan bakat non-akademik" },
+            { text: "Langkah terpenting sebelum menulis butir soal adalah menyusun...", options: ["Kunci Jawaban", "Daftar Hadir", "Kisi-kisi soal", "Skor Maksimal"], answer: "Kisi-kisi soal" },
+            { text: "Validitas yang mengukur sejauh mana butir soal mewakili seluruh materi yang diajarkan disebut validitas...", options: ["Konstruk", "Isi (Content)", "Kriteria", "Prediktif"], answer: "Isi (Content)" },
+            { text: "Kata kerja operasional (KKO) 'Mengidentifikasi', 'Menyebutkan', dan 'Mendaftar' berada pada tingkat Taksonomi Bloom...", options: ["Memahami (C2)", "Mengingat (C1)", "Menerapkan (C3)", "Menganalisis (C4)"], answer: "Mengingat (C1)" },
+            { text: "Tingkat kognitif 'Menerapkan (C3)' berfokus pada kemampuan untuk...", options: ["Mengingat fakta", "Menggunakan konsep di situasi baru", "Membuat kesimpulan", "Menyusun hipotesis"], answer: "Menggunakan konsep di situasi baru" },
+            { text: "Level berpikir **HOTS (High Order Thinking Skills)** dimulai dari tingkatan Taksonomi Bloom yang mana?", options: ["C1 (Mengingat)", "C2 (Memahami)", "C3 (Menerapkan)", "C4 (Menganalisis)"], answer: "C4 (Menganalisis)" },
+            { text: "Soal yang meminta siswa untuk **membuat rekomendasi** berdasarkan data kompleks mengukur tingkat...", options: ["Menerapkan (C3)", "Menganalisis (C4)", "Mengevaluasi (C5)", "Mencipta (C6)"], answer: "Mengevaluasi (C5)" },
+            { text: "Jika skor minimal kompeten adalah 70 dari 100, hal ini termasuk dalam ranah penilaian...", options: ["Sumatif", "Normatif", "Kriteria", "Diagnostik"], answer: "Kriteria" },
+            { text: "Aktivitas 'Merancang sebuah eksperimen baru' berada pada tingkatan Taksonomi Bloom yang paling tinggi, yaitu...", options: ["Menganalisis", "Mengevaluasi", "Mencipta", "Menilai"], answer: "Mencipta" }
+        ];
+        
+        // Modul 6: Game Interaktif (Bank Soal Baru)
+        const gameQuestions = [
+            { text: "Mengidentifikasi", answer: "C1 (Mengingat)" },
+            { text: "Menjelaskan", answer: "C2 (Memahami)" },
+            { text: "Menghitung", answer: "C3 (Menerapkan)" },
+            { text: "Membandingkan", answer: "C4 (Menganalisis)" },
+            { text: "Menyimpulkan", answer: "C5 (Mengevaluasi)" },
+            { text: "Merancang", answer: "C6 (Mencipta)" },
+            { text: "Mendaftar", answer: "C1 (Mengingat)" },
+            { text: "Menggunakan", answer: "C3 (Menerapkan)" },
+            { text: "Mengkritisi", answer: "C5 (Mengevaluasi)" },
+            { text: "Menggabungkan", answer: "C6 (Mencipta)" }
+        ];
+        // Opsi tetap untuk game
+        const gameOptions = ["C1 (Mengingat)", "C2 (Memahami)", "C3 (Menerapkan)", "C4 (Menganalisis)", "C5 (Mengevaluasi)", "C6 (Mencipta)"];
+
+
+        const allQuestionBanks = {
+            1: { title: "Latihan Singkat Modul 1", bank: modul1Questions, isFinal: false },
+            2: { title: "Latihan Singkat Modul 2", bank: modul2Questions, isFinal: false },
+            3: { title: "Latihan Soal Modul 3", bank: modul3Questions, isFinal: false },
+            4: { title: "Tes Pemahaman HOTS Modul 4", bank: modul4Questions, isFinal: false },
+            5: { title: "Ujian Kompetensi Akhir", bank: finalExamQuestionsBank, isFinal: true }
+        };
+
+        // ==========================================================
+        // >>> LOGIKA KUIS DINAMIS & GAME BARU <<<
+        // ==========================================================
+        document.addEventListener('DOMContentLoaded', () => {
+            // === 1. DOM Elements ===
+            const body = document.body;
+            const themeToggle = document.getElementById('theme-toggle');
+            const aiModal = document.getElementById('ai-modal');
+            const aiSendBtn = document.getElementById('ai-send-btn');
+            const aiQuestionInput = document.getElementById('ai-question');
+            const aiResponseArea = document.getElementById('ai-response');
+            const notificationArea = document.getElementById('notification-area');
+            const startQuizBtn = document.getElementById('start-quiz-btn');
+            const quizModal = document.getElementById('quiz-modal');
+            const nextQuestionBtn = document.getElementById('next-question-btn');
+            const submitQuizBtn = document.getElementById('submit-quiz-btn');
+            const quizProgress = document.getElementById('quiz-progress');
+            const quizProgressText = document.getElementById('quiz-progress-text');
+            const quizResultArea = document.getElementById('quiz-result');
+            const openAIChatNav = document.getElementById('open-ai-chat-nav');
+            const quizTitle = document.getElementById('quiz-title'); 
+            
+            // Elemen Game Baru
+            const startGameBtn = document.getElementById('start-game-btn');
+            const gameModal = document.getElementById('game-modal');
+            const closeGameBtn = document.getElementById('close-game-btn');
+            const gameQuestionText = document.getElementById('game-question-text');
+            const gameOptionsDiv = document.getElementById('game-options');
+            const gameResultArea = document.getElementById('game-result-area');
+            const gameTimerDisplay = document.getElementById('game-timer');
+
+
+            // Elemen Audio
+            const clickSound = document.getElementById('click-sound'); 
+            const interactiveButtons = document.querySelectorAll('.interactive-btn'); 
+
+            // Variabel Status Kuis
+            let currentQuestionIndex = 0;
+            let userAnswers = [];
+            const FINAL_EXAM_SIZE = 20; 
+            const PRACTICE_QUIZ_SIZE = 5; 
+            let activeQuizConfig = {};
+            let totalQuestionsToAsk = 0;
+            
+            // Variabel Status Game
+            let currentGameQuestions = [];
+            let currentGameIndex = 0;
+            let gameScore = 0;
+            let gameTimer;
+            const GAME_TOTAL_TIME = 30; // 30 detik
+
+            // Fungsi Pemicu Suara (BARU)
+            const playSoundClick = () => {
+                if (clickSound) {
+                    clickSound.currentTime = 0; 
+                    clickSound.play().catch(e => console.warn("Gagal memutar suara:", e));
+                }
+            };
+            
+            // Tambahkan Event Listener Sound Effect
+            interactiveButtons.forEach(button => {
+                button.addEventListener('click', playSoundClick);
+            });
+             document.querySelectorAll('.nav-menu a').forEach(navLink => {
+                navLink.addEventListener('click', playSoundClick);
+            });
+            document.getElementById('question-area').addEventListener('change', playSoundClick);
+
+
+            // Fungsi Notifikasi Visual
+            const showNotification = (message, type = 'default') => {
+                notificationArea.textContent = message;
+                notificationArea.className = 'notification'; 
+                notificationArea.classList.add('show'); 
+                if (type === 'success') {
+                    notificationArea.classList.add('success');
+                } else if (type === 'error') {
+                    notificationArea.classList.add('error');
+                } else {
+                    // Kelas default
+                }
+
+                setTimeout(() => {
+                    notificationArea.classList.remove('show');
+                }, 3000); 
+            };
+
+            // === 2. Light/Dark Mode Logic ===
+            const toggleTheme = () => {
+                body.classList.toggle('dark-theme');
+                const isDark = body.classList.contains('dark-theme');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                themeToggle.innerHTML = isDark ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+            };
+
+            // Inisialisasi tema saat memuat halaman
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.classList.add('dark-theme');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+            if (themeToggle) {
+                themeToggle.addEventListener('click', toggleTheme);
+            }
+            
+            // === 3. Tanya AI Modal Logic ===
+            const closeModal = (modal) => {
+                modal.style.display = 'none';
+                clearInterval(gameTimer); // Pastikan timer game dihentikan jika modal game ditutup
+            };
+
+            const openAIModal = () => {
+                aiModal.style.display = 'block';
+                aiResponseArea.innerHTML = '<p>Jawaban AI akan ditampilkan di sini.</p>';
+                aiQuestionInput.value = '';
+            };
+
+            document.getElementById('ai-toggle-btn').addEventListener('click', openAIModal);
+            if (openAIChatNav) {
+                openAIChatNav.addEventListener('click', openAIModal); 
+            }
+
+            aiModal.querySelector('.close-btn').addEventListener('click', () => closeModal(aiModal));
+
+            window.addEventListener('click', (event) => {
+                if (event.target === aiModal) closeModal(aiModal);
+                if (event.target === quizModal) closeModal(quizModal);
+                if (event.target === gameModal) closeModal(gameModal); // Tambahkan game modal
+            });
+
+            // Simulasi Jawaban AI
+            const getAiResponse = (question) => {
+                const lowerQuestion = question.toLowerCase();
+                if (lowerQuestion.includes("kognitif") || lowerQuestion.includes("pengertian")) {
+                    return "<p>Penilaian kognitif adalah proses pengukuran kemampuan intelektual, seperti pengetahuan, pemahaman, dan kemampuan berpikir kritis, pada peserta didik.</p>";
+                } else if (lowerQuestion.includes("skala") || lowerQuestion.includes("bloom")) {
+                    return "<p>Skala yang umum digunakan adalah **Taksonomi Bloom (revisi)**, yang mencakup Mengingat, Memahami, Menerapkan, Menganalisis, Mengevaluasi, dan Mencipta.</p>";
+                } else if (lowerQuestion.includes("hots") || lowerQuestion.includes("berpikir tingkat tinggi")) {
+                    return "<p>**HOTS (High Order Thinking Skills)** dalam Taksonomi Bloom meliputi tingkatan C4 (Menganalisis), C5 (Mengevaluasi), dan C6 (Mencipta).</p>";
+                } else if (lowerQuestion.includes("instrumen") || lowerQuestion.includes("soal")) {
+                     return "<p>Penyusunan instrumen penilaian kognitif yang baik dimulai dari **perumusan tujuan** hingga **penulisan butir soal** berdasarkan kisi-kisi dan Taksonomi Bloom.</p>";
+                } else {
+                    return "<p>Saya asisten AI fokus pada Evaluasi Pembelajaran dan **Penilaian Kognitif**. Coba ajukan pertanyaan yang spesifik tentang modul!</p>";
+                }
+            };
+
+            aiSendBtn.addEventListener('click', () => {
+                const question = aiQuestionInput.value.trim();
+                if (question) {
+                    aiResponseArea.innerHTML = `<p style="color: var(--color-secondary);">🤖 AI sedang memproses...</p>`;
+                    setTimeout(() => {
+                        aiResponseArea.innerHTML = getAiResponse(question);
+                    }, 1500); 
+                } else {
+                    showNotification('⚠️ Masukkan pertanyaan terlebih dahulu.', 'error');
+                }
+            });
+
+            // === 4. Quiz Logic (Dynamic for Practice & Final) ===
+            
+            const getQuestion = (index) => {
+                // Untuk Ujian Akhir (Modul 5), soal berulang dari bank 10 soal menjadi 20.
+                if (activeQuizConfig.isFinal) {
+                    return activeQuizConfig.bank[index % activeQuizConfig.bank.length];
+                }
+                // Untuk Latihan (Modul 1-4), soal diambil 5 unik.
+                return activeQuizConfig.bank[index];
+            };
+            
+            const renderQuestion = (index) => {
+                const q = getQuestion(index);
+                const displayIndex = index + 1;
+
+                document.getElementById('question-area').innerHTML = `
+                    <h4 style="color: var(--color-primary);">Soal ${displayIndex} dari ${totalQuestionsToAsk}:</h4>
+                    <p><strong>${q.text}</strong></p>
+                    <form id="quiz-form">
+                        ${q.options.map((option, i) => `
+                            <label>
+                                <input type="radio" name="answer" value="${option}" id="option-${i}"
+                                    ${userAnswers[index] === option ? 'checked' : ''}>
+                                ${option}
+                            </label>
+                        `).join('')}
+                    </form>
+                `;
+                
+                const form = document.getElementById('quiz-form');
+                form.addEventListener('change', () => {
+                    const selected = form.querySelector('input[name="answer"]:checked');
+                    if (selected) {
+                        userAnswers[index] = selected.value;
+                        nextQuestionBtn.disabled = false; 
+                    }
+                });
+                
+                // Atur visibility tombol
+                nextQuestionBtn.style.display = (index === totalQuestionsToAsk - 1) ? 'none' : 'inline-block';
+                submitQuizBtn.style.display = (index === totalQuestionsToAsk - 1) ? 'inline-block' : 'none';
+                nextQuestionBtn.disabled = !userAnswers[index]; 
+            };
+
+            const updateProgress = () => {
+                const completedQuestions = userAnswers.filter(answer => answer !== null).length;
+                const progressValue = (completedQuestions / totalQuestionsToAsk) * 100;
+                
+                const progressDisplay = (currentQuestionIndex === totalQuestionsToAsk) ? totalQuestionsToAsk : currentQuestionIndex;
+
+                quizProgress.style.width = `${progressValue}%`;
+                quizProgressText.textContent = `Soal ${progressDisplay} dari ${totalQuestionsToAsk}`;
+            };
+
+            const startQuiz = (modulNum) => {
+                activeQuizConfig = allQuestionBanks[modulNum];
+                totalQuestionsToAsk = activeQuizConfig.isFinal ? FINAL_EXAM_SIZE : PRACTICE_QUIZ_SIZE;
+
+                quizTitle.textContent = activeQuizConfig.title; // Perbarui judul modal
+                currentQuestionIndex = 0;
+                userAnswers = Array(totalQuestionsToAsk).fill(null);
+                quizResultArea.style.display = 'none';
+                quizModal.style.display = 'block';
+                renderQuestion(currentQuestionIndex);
+                updateProgress();
+            }
+
+            // Event Listener untuk Ujian Akhir (Modul 5)
+            startQuizBtn.addEventListener('click', () => startQuiz(5));
+
+            // Event Listener untuk Latihan Singkat (Modul 1-4)
+            document.querySelectorAll('.btn-latihan').forEach(button => {
+                 button.addEventListener('click', (e) => {
+                    const modulNum = parseInt(e.currentTarget.getAttribute('data-modul'));
+                    // Pastikan hanya memanggil untuk modul 1-4
+                    if (modulNum >= 1 && modulNum <= 4) {
+                        startQuiz(modulNum);
+                    }
+                });
+            });
+            
+            document.getElementById('close-quiz-btn').addEventListener('click', () => closeModal(quizModal));
+            
+            nextQuestionBtn.addEventListener('click', () => {
+                if (currentQuestionIndex < totalQuestionsToAsk - 1 && userAnswers[currentQuestionIndex] !== null) {
+                    currentQuestionIndex++;
+                    renderQuestion(currentQuestionIndex);
+                    updateProgress();
+                } else {
+                    showNotification('Pilih jawaban sebelum melanjutkan!', 'error');
+                }
+            });
+
+            submitQuizBtn.addEventListener('click', () => {
+                if (userAnswers[currentQuestionIndex] === null) {
+                    showNotification("Anda belum menjawab soal terakhir!", 'error');
+                    return;
+                }
+                
+                currentQuestionIndex = totalQuestionsToAsk;
+                updateProgress();
+
+                let correctCount = 0;
+                for (let i = 0; i < totalQuestionsToAsk; i++) {
+                    const q = getQuestion(i);
+                    if (userAnswers[i] === q.answer) {
+                        correctCount++;
+                    }
+                }
+                
+                const score = (correctCount / totalQuestionsToAsk) * 100;
+                const isPassed = score >= 70; // Kriteria kelulusan 70%
+                
+                document.getElementById('question-area').innerHTML = `<h4>✅ ${activeQuizConfig.isFinal ? 'Ujian Selesai!' : 'Latihan Selesai!'} Hasil Anda:</h4>`;
+
+                quizResultArea.style.display = 'block';
+                quizResultArea.innerHTML = `
+                    <p>Total Soal Dijawab: <strong>${totalQuestionsToAsk}</strong></p>
+                    <p>Jawaban Benar: <strong style="color: var(--color-success);">${correctCount}</strong></p>
+                    <p>Jawaban Salah: <strong style="color: var(--color-error);">${totalQuestionsToAsk - correctCount}</strong></p>
+                    <p><h3>Skor Akhir Anda: <span style="color: ${isPassed ? 'var(--color-success)' : 'var(--color-error)'}">${score.toFixed(0)}</span></h3></p>
+                    <p style="text-align: center; margin-top: 20px; font-style: italic;">
+                        ${isPassed ? 'Selamat! Anda kompeten di bidang ini.' : 'Perlu memperdalam materi, coba lagi!'}
+                    </p>
+                `;
+                
+                showNotification(`Selesai. Skor Anda: ${score.toFixed(0)}`, isPassed ? 'success' : 'error');
+
+                nextQuestionBtn.style.display = 'none';
+                submitQuizBtn.style.display = 'none';
+            });
+            
+            // === 5. Game Interaktif Logic (Modul 6) ===
+            
+            const shuffleArray = (array) => {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
+            }
+            
+            const startGame = () => {
+                currentGameQuestions = shuffleArray(gameQuestions).slice(0, 5); // Ambil 5 soal acak
+                currentGameIndex = 0;
+                gameScore = 0;
+                gameResultArea.style.display = 'none';
+                gameModal.style.display = 'block';
+                
+                // Mulai Timer
+                let timeLeft = GAME_TOTAL_TIME;
+                gameTimerDisplay.textContent = `Waktu: ${timeLeft}`;
+                clearInterval(gameTimer);
+                gameTimer = setInterval(() => {
+                    timeLeft--;
+                    gameTimerDisplay.textContent = `Waktu: ${timeLeft}`;
+                    if (timeLeft <= 5) {
+                         gameTimerDisplay.style.color = 'var(--color-error)';
+                    } else if (timeLeft <= 15) {
+                         gameTimerDisplay.style.color = 'orange';
+                    } else {
+                         gameTimerDisplay.style.color = 'var(--color-success)';
+                    }
+
+                    if (timeLeft <= 0) {
+                        endGame();
+                    }
+                }, 1000);
+                
+                renderGameQuestion();
+            };
+            
+            const endGame = () => {
+                clearInterval(gameTimer);
+                gameTimerDisplay.textContent = 'Waktu Habis!';
+                
+                // Non-aktifkan tombol
+                gameOptionsDiv.innerHTML = '';
+                gameQuestionText.textContent = "GAME SELESAI!";
+                
+                gameResultArea.style.display = 'block';
+                gameResultArea.innerHTML = `
+                    <h4>🎉 Hasil Akhir Game:</h4>
+                    <p>Skor Anda: <strong>${gameScore} / ${currentGameQuestions.length}</strong></p>
+                    <p style="text-align: center; margin-top: 15px;">
+                        <button class="btn btn-primary interactive-btn" onclick="document.getElementById('start-game-btn').click(); closeModal(document.getElementById('game-modal'))">
+                            <i class="fas fa-redo-alt"></i> Main Lagi
+                        </button>
+                    </p>
+                `;
+                showNotification(`Game Selesai. Skor Anda: ${gameScore}`, gameScore > 3 ? 'success' : 'error');
+            }
+            
+            const renderGameQuestion = () => {
+                if (currentGameIndex >= currentGameQuestions.length) {
+                    endGame();
+                    return;
+                }
+                
+                const q = currentGameQuestions[currentGameIndex];
+                gameQuestionText.innerHTML = `KKO: **${q.text}** (Soal ${currentGameIndex + 1} dari ${currentGameQuestions.length})`;
+                gameOptionsDiv.innerHTML = ''; // Bersihkan opsi sebelumnya
+
+                // Shuffle opsi jawaban agar urutan C1-C6 tidak selalu sama
+                const shuffledOptions = shuffleArray([...gameOptions]); 
+
+                shuffledOptions.forEach(option => {
+                    const btn = document.createElement('button');
+                    btn.className = 'btn btn-outline-primary interactive-btn';
+                    btn.textContent = option;
+                    btn.setAttribute('data-answer', option);
+                    btn.onclick = () => checkGameAnswer(btn, q.answer);
+                    gameOptionsDiv.appendChild(btn);
+                });
+            };
+            
+            const checkGameAnswer = (selectedButton, correctAnswer) => {
+                const isCorrect = selectedButton.getAttribute('data-answer') === correctAnswer;
+                
+                // Non-aktifkan semua tombol setelah memilih
+                document.querySelectorAll('#game-options button').forEach(btn => {
+                    btn.disabled = true;
+                });
+
+                // Beri warna feedback
+                if (isCorrect) {
+                    gameScore++;
+                    selectedButton.classList.add('game-correct');
+                } else {
+                    selectedButton.classList.add('game-incorrect');
+                    // Tampilkan jawaban yang benar
+                    document.querySelector(`[data-answer="${correctAnswer}"]`).classList.add('game-correct');
+                }
+                
+                setTimeout(() => {
+                    currentGameIndex++;
+                    renderGameQuestion();
+                }, 1000); // Tunggu 1 detik sebelum pindah soal
+                
+            };
+            
+            // Event Listener Game
+            startGameBtn.addEventListener('click', startGame);
+            closeGameBtn.addEventListener('click', () => closeModal(gameModal));
+
+
+            // Inisialisasi Tombol Aksi Modul Lain (Simulasi Navigasi)
+            document.querySelectorAll('.btn-materi').forEach(button => {
+                 button.addEventListener('click', (e) => {
+                    const btnType = e.currentTarget.classList[1].replace('btn-', '');
+                    const modulNum = e.currentTarget.getAttribute('data-modul');
+                    showNotification(`Navigasi ke halaman: ${btnType.toUpperCase()} Modul ${modulNum} (Simulasi Konten)`, 'default');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
